@@ -30,6 +30,7 @@ ipch/
 
 # Game-extracted assets (copyrighted content, not redistributable)
 assets/
+src/res_assets.h
 
 # Cheat Engine scan files
 pointer scans/
