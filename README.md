@@ -68,3 +68,15 @@ If you start a new character in an existing slot, the tracker detects this autom
 The mod runs as a DLL loaded by EldenModLoader. It reads game memory directly (in-process, no external tool needed) and hooks the D3D12 Present call to render the overlay via Dear ImGui — the same approach used by most Elden Ring HUD mods.
 
 Bloodstain recovery is detected directly from game memory: the game itself signals when a bloodstain is picked up, so there are no false positives from enemy drops.
+
+## Building from source
+
+**Requirements:** Visual Studio 2022 with the "Desktop development with C++" workload
+
+1. Clone the repository
+2. Open `RuneLossTracker.sln`
+3. Select **Release / x64** and build
+
+All dependencies (Dear ImGui, MinHook) are bundled. The only file missing from the repo is `src/res_assets.h`, which embeds the game's HUD font as a byte array — it is excluded because the font is copyrighted by Bandai Namco. Without it the project still compiles and runs, falling back to the default ImGui font and geometric icons instead.
+
+> **Antivirus false positive:** Some scanners flag this DLL (Trojan:Win32/Wacatac.H!ml). This is a known false positive for unsigned DLLs that hook DirectX APIs — a technique used by virtually all Elden Ring HUD mods. A false positive report has been submitted to Microsoft.
